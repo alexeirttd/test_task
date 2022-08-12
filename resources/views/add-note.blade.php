@@ -21,6 +21,15 @@
                                 {{Session::get('client_created')}}
                             </div>
                         @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form class="form-margin" action="client-submit" method="post">
                             @csrf
 {{--                            <div class="mb-3">--}}
@@ -86,7 +95,15 @@
                                 {{Session::get('car_created')}}
                             </div>
                         @endif
-
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form class="form-margin" action="car-submit"  method="post">
                             @csrf
 

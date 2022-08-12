@@ -27,6 +27,13 @@ class PostController extends Controller
 
 //функции для кнопки добавления
     public function clientSubmit(Request  $request){
+        $validate = $request->validate([
+            'full_name' => 'required|min:3',
+            'gender' => 'required',
+            'phone' => 'required|min:11|max:11',
+            'car' => 'required'
+        ]);
+
         $insert = DB::table('clients')->insert([
             'id' => $request->id,
          'full_name' => $request->full_name,
@@ -38,10 +45,19 @@ class PostController extends Controller
      ]);
 
 
+
         return back()->with('client_created', 'Сlient added Successfully');
     }
 
     public function carSubmit(Request  $request){
+        $validate = $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'gos_number' => 'required',
+            'status' => 'required'
+        ]);
+
         $insert = DB::table('cars')->insert([
             'brand' => $request->brand,
             'model' => $request->model,
