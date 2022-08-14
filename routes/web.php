@@ -21,8 +21,6 @@ Route::post('/client-submit', [PostController::class, 'clientSubmit']);
 
 Route::post('/car-submit', [PostController::class, 'carSubmit']);
 
-//Route::post('/note-submit', [PostController::class, 'noteSubmit']);
-
 
 Route::get('/{id}', [PostController::class, 'getClientById']);
 

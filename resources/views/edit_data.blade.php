@@ -13,8 +13,11 @@
         <h3 class="text-center">Страница изменения информации</h3>
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col">
+
                 <div class="card">
+
                     <div class="card-body">
+
                         <h5 class="card-title">Блок изменения данных о клиенте</h5>
                         <hr>
                         @if(Session::has('note_updated'))
@@ -24,13 +27,13 @@
                         @endif
                         <form class="form-margin" action="/update-client" method="post">
                             @csrf
-                            <div class="mb-3">
-                                <label class="form-label">Введите порядковый номер клиента в общем списке</label>
-                                <input name="id" type="number" value="{{$client->id}}" class="form-control" placeholder="1">
-                            </div>
+{{--                            <div class="mb-3">--}}
+{{--                                <label class="form-label">Введите порядковый номер клиента в общем списке</label>--}}
+{{--                                <input name="id" type="number" value="{{$client->id}}" class="form-control" placeholder="1">--}}
+{{--                            </div>--}}
                             <div class="mb-3">
                                 <label class="form-label">Введите новое ФИО</label>
-                                <input name="id" type="text" class="form-control" value="{{$client->full_name}}" placeholder="Иванов Иван Иванович">
+                                <input name="full_name" type="text" class="form-control" value="{{$client->full_name}}" placeholder="Иванов Иван Иванович">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Выберите пол</label>
@@ -44,22 +47,31 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Введите новый номер телефона</label>
-                                <input name="salary" type="text" value="{{$client->phone}}" class="form-control" placeholder="8 937 989 07 86">
+                                <input name="phone" type="text" value="{{$client->phone}}" class="form-control" placeholder="8 937 989 07 86">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Введите новый адрес</label>
-                                <input name="salary" type="text" value="{{$client->address}}" class="form-control" placeholder="г. Волгоград, Университетский проспект 0">
+                                <input name="address" type="text" value="{{$client->address}}" class="form-control" placeholder="г. Волгоград, Университетский проспект 0">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Введите марку и модель нового авто</label>
-                                <input name="salary" type="text" value="{{$client->car}}" class="form-control" placeholder="Renault megan">
+                                <input name="car" type="text" value="{{$client->car}}" class="form-control" placeholder="Renault megan">
                             </div>
 
                             <div class="text-center">
                                 <button name="addClient" class="btn btn-primary" type="submit">Изменить данные</button>
                             </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -70,6 +82,10 @@
                         <h5 class="card-title">Блок изменения данных об авто</h5>
                         <hr>
                         <form class="form-margin" action="/update-car" method="post">
+{{--                            <div class="mb-3">--}}
+{{--                                <label class="form-label">Введите порядковый номер машины</label>--}}
+{{--                                <input name="client_id"  value="{{$car->client_id}}" type="number" class="form-control" placeholder="1">--}}
+{{--                            </div>--}}
                             <div class="mb-3">
                                 <label class="form-label">Введите марку нового авто</label>
                                 <input name="id" type="text" value="{{$car->brand}}" class="form-control" placeholder="Renault">
@@ -80,12 +96,12 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Введите цвет кузова нового авто</label>
-                                <input name="age" type="text" value="{{$car->color}}" class="form-control" placeholder="Зелёный">
+                                <input name="color" type="text" value="{{$car->color}}" class="form-control" placeholder="Зелёный">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Введите другой Гос Номер РФ</label>
-                                <input name="salary" type="text" value="{{$car->gos_number}}" class="form-control" placeholder="А 777 АА 31RUS">
+                                <input name="gos_number" type="text" value="{{$car->gos_number}}" class="form-control" placeholder="А 777 АА 31RUS">
                             </div>
 
                             <div class="mb-3">
@@ -98,7 +114,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button name="addCar" class="btn btn-primary" type="submit">Изменить данные</button>
+                                <button name="changeData" class="btn btn-primary" type="submit">Изменить данные</button>
                             </div>
                         </form>
                     </div>
